@@ -29,11 +29,12 @@ class Order extends React.Component {
     super(props);
     this.state = {
       orderChanged: false,
-      orderData: this.props.signal.orderData || {
-        type: 'sell',
-        amount: 1,
-        stopLoss: 400,
-        sellOrder: 400,
+      orderData: this.props.signal ? this.props.signal.orderData : {
+        rate: 6300,
+        stopLoss: 6350,
+        buyOrder: 0,
+        type: 'Sell',
+        amount: 0.001,
       },
       reason: { textual: '', formula: '' },
       state: 'ACCEPTED',
