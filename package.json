@@ -1,7 +1,7 @@
 {
-  "name": "@superalgos/modulename-client",
-  "version": "0.0.1",
-  "description": "Superalgos modulename client-side web app",
+  "name": "@superalgos/cockpit-client",
+  "version": "0.0.3",
+  "description": "Superalgos cockpit client-side web app",
   "author": "",
   "license": "",
   "main": "src/index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Superalgos/ModulenameClientModule.git"
+    "url": "git+https://github.com/Superalgos/CockpitClientModule.git"
   },
   "standard": {
     "parser": "babel-eslint"
@@ -33,6 +33,8 @@
     "react": "^16.5.2",
     "react-apollo": "^2.2.4",
     "react-dom": "^16.6.0",
+    "react-json-editor-ajrm": "^2.5.9",
+    "react-json-view": "^1.19.1",
     "react-router-dom": "^4.3.1"
   }
 }
