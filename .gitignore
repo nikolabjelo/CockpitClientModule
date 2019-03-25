@@ -14,4 +14,3 @@ node_modules
 
 #Mac specific files
 .DS_Store
-src/Components/Signals/Tabs/Ongoing.js

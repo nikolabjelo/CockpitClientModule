@@ -41,7 +41,10 @@ class Order extends React.Component {
   }
 
   render() {
-    const { signal } = this.props;
+    const {
+      orderChanged, orderData, reason, state,
+    } = this.state;
+    const { signal, clone } = this.props;
     if (signal) {
       return (
         <Mutation mutation={EDIT_SIGNAL}
@@ -52,21 +55,21 @@ class Order extends React.Component {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  if (this.state.orderChanged) {
+                  if (orderChanged) {
                     editSignal({
                       variables: {
                         id: signal.id,
-                        state: this.state.state,
-                        orderData: this.state.orderData,
-                        reason: this.state.reason,
+                        state,
+                        orderData,
+                        reason,
                       },
                     });
                   } else {
                     editSignal({
                       variables: {
                         id: signal.id,
-                        state: this.state.state,
-                        reason: this.state.reason,
+                        state,
+                        reason,
                       },
                     });
                   }
@@ -76,7 +79,7 @@ class Order extends React.Component {
                   OrderData
                 </Typography>
                 <JSONInput
-                  placeholder = { this.state.orderData }
+                  placeholder = { orderData }
                   locale = { locale }
                   height = '550px'
                   onChange = {({ jsObject }) => { this.setState({ orderData: jsObject, orderChanged: true }); }}
@@ -85,7 +88,7 @@ class Order extends React.Component {
                   Reason
                 </Typography>
                 <JSONInput
-                  placeholder = { this.state.reason }
+                  placeholder = { reason }
                   locale = { locale }
                   height = '550px'
                   onChange = {({ jsObject }) => { this.setState({ reason: jsObject }); }}
@@ -94,7 +97,7 @@ class Order extends React.Component {
                   State
                 </Typography>
                 <Select
-                  value={this.state.state}
+                  value={state}
                   onChange={(event) => { this.setState({ state: event.target.value }); }}
                 >
                   <MenuItem value={'ACCEPTED'}>ACCEPTED</MenuItem>
@@ -118,9 +121,9 @@ class Order extends React.Component {
                 e.preventDefault();
                 createSignal({
                   variables: {
-                    cloneId: this.props.clone.id,
-                    orderData: this.state.orderData,
-                    reason: this.state.reason,
+                    cloneId: clone.id,
+                    orderData,
+                    reason,
                   },
                 });
               }}
@@ -129,7 +132,7 @@ class Order extends React.Component {
                 OrderData
               </Typography>
               <JSONInput
-                placeholder = { this.state.orderData }
+                placeholder = { orderData }
                 locale = { locale }
                 height = '550px'
                 onChange = {({ jsObject }) => { this.setState({ orderData: jsObject, orderChanged: true }); }}
@@ -138,7 +141,7 @@ class Order extends React.Component {
                 Reason
               </Typography>
               <JSONInput
-                placeholder = { this.state.reason }
+                placeholder = { reason }
                 locale = { locale }
                 height = '550px'
                 onChange = {({ jsObject }) => { this.setState({ reason: jsObject }); }}

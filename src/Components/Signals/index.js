@@ -30,7 +30,7 @@ import {
 
 const GET_SIGNALS = gql`
   {
-    oldClones: operations_HistoryClones {
+    oldClones: operations_HistoryClones(botType: "Trading") {
       id
       processName
       beginDatetime
@@ -51,7 +51,7 @@ const GET_SIGNALS = gql`
         }
       }
     }
-    activeClones: operations_Clones {
+    activeClones: operations_Clones(botType: "Trading") {
       id
       processName
       beginDatetime
@@ -160,8 +160,8 @@ class Search extends React.Component {
                 <React.Fragment>
                   {value === 0 && <TabContainer><Ongoing data={data.activeClones} /></TabContainer>}
                   {value === 1 && <TabContainer><Past data={data.activeClones} /></TabContainer>}
-                  {value === 2 && <TabContainer><AddOrder data={data.oldClones} /></TabContainer>}
-                  {value === 3 && <TabContainer><Archived data={data.activeClones} /></TabContainer>}
+                  {value === 2 && <TabContainer><Archived data={data.oldClones} /></TabContainer>}
+                  {value === 3 && <TabContainer><AddOrder data={data.activeClones} /></TabContainer>}
                 </React.Fragment>
               );
             }}
