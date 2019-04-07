@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import JSONInput from 'react-json-editor-ajrm';
 import locale from 'react-json-editor-ajrm/locale/en';
-import { Typography, Select, MenuItem } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import styles from '../styles';
 
@@ -28,23 +28,28 @@ class Order extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      orderChanged: false,
       orderData: this.props.signal ? this.props.signal.orderData : {
-        rate: 6300,
-        stopLoss: 6350,
-        buyOrder: 0,
-        type: 'Sell',
-        amount: 0.001,
+        creator: 'H',
+        dateTime: 1551579300000,
+        owner: 'U',
+        exchange: 'Poloniex',
+        market: 'BTC/USDST',
+        marginEnabled: true,
+        type: 'M',
+        rate: 6368,
+        stop: 6463,
+        takeProfit: 6463,
+        direction: 'S',
+        size: null,
+        status: 'MAU',
+        sizeFilled: 0.00045,
+        exitOutcome: 'SL',
       },
-      reason: { textual: '', formula: '' },
-      state: 'ACCEPTED',
     };
   }
 
   render() {
-    const {
-      orderChanged, orderData, reason, state,
-    } = this.state;
+    const { orderData } = this.state;
     const { signal, clone } = this.props;
     if (signal) {
       return (
@@ -56,24 +61,12 @@ class Order extends React.Component {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  if (orderChanged) {
-                    editSignal({
-                      variables: {
-                        id: signal.id,
-                        state,
-                        orderData,
-                        reason,
-                      },
-                    });
-                  } else {
-                    editSignal({
-                      variables: {
-                        id: signal.id,
-                        state,
-                        reason,
-                      },
-                    });
-                  }
+                  editSignal({
+                    variables: {
+                      id: signal.id,
+                      orderData,
+                    },
+                  });
                 }}
               >
                 <Typography>
@@ -85,25 +78,6 @@ class Order extends React.Component {
                   height = '550px'
                   onChange = {({ jsObject }) => { this.setState({ orderData: jsObject, orderChanged: true }); }}
                 />
-                <Typography>
-                  Reason
-                </Typography>
-                <JSONInput
-                  placeholder = { reason }
-                  locale = { locale }
-                  height = '550px'
-                  onChange = {({ jsObject }) => { this.setState({ reason: jsObject }); }}
-                />
-                <Typography>
-                  State
-                </Typography>
-                <Select
-                  value={state}
-                  onChange={(event) => { this.setState({ state: event.target.value }); }}
-                >
-                  <MenuItem value={'ACCEPTED'}>ACCEPTED</MenuItem>
-                  <MenuItem value={'REFUSED'}>REFUSED</MenuItem>
-                </Select>
                 <button type="submit">PlaceOrder</button>
               </form>
             </div>
@@ -124,7 +98,6 @@ class Order extends React.Component {
                   variables: {
                     cloneId: clone.id,
                     orderData,
-                    reason,
                   },
                 });
               }}
@@ -137,15 +110,6 @@ class Order extends React.Component {
                 locale = { locale }
                 height = '550px'
                 onChange = {({ jsObject }) => { this.setState({ orderData: jsObject, orderChanged: true }); }}
-              />
-              <Typography>
-                Reason
-              </Typography>
-              <JSONInput
-                placeholder = { reason }
-                locale = { locale }
-                height = '550px'
-                onChange = {({ jsObject }) => { this.setState({ reason: jsObject }); }}
               />
               <button type="submit">PlaceOrder</button>
             </form>

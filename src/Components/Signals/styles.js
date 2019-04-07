@@ -26,6 +26,11 @@ const styles = theme => ({
   title: {
     marginTop: 20,
   },
+  actionNeeded: {
+    color: '#e3493c',
+    fontWeight: 'bold',
+    marginLeft: 20,
+  },
 });
 
 export default styles;

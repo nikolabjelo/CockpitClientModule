@@ -5,25 +5,15 @@ import ReactJson from 'react-json-view';
 import styles from '../styles';
 
 class ShowSignal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      expanded: null,
-    };
-  }
-
   render() {
     const { signal } = this.props;
     const {
-      state, context, orderData, changeLogs,
+      orderStatus, orderData, changeLogs,
     } = signal;
     return (
       <React.Fragment>
         <Typography>
-          State: {state}
-        </Typography>
-        <Typography>
-          Context: <ReactJson src={context || {}} />
+          State: {orderStatus}
         </Typography>
         <Typography>
           OrderData: <ReactJson src={orderData || {}} />

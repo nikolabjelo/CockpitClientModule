@@ -39,14 +39,10 @@ const GET_SIGNALS = gql`
       botName
       signals {
         id
-        state
-        context
+        orderStatus
         orderData
-        changeLogs {
-          reason
-          state
-          context
-          orderData
+        changeLogs{
+          message
           date
         }
       }
@@ -58,29 +54,21 @@ const GET_SIGNALS = gql`
       endDatetime
       teamName
       botName
-      signaledSignals: signals(state: SIGNALED) {
+      signaledSignals: signals(orderStatus: "SIG") {
         id
-        state
-        context
+        orderStatus
         orderData
-        changeLogs {
-          reason
-          state
-          context
-          orderData
+        changeLogs{
+          message
           date
         }
       }
       signals {
         id
-        state
-        context
+        orderStatus
         orderData
-        changeLogs {
-          reason
-          state
-          context
-          orderData
+        changeLogs{
+          message
           date
         }
       }

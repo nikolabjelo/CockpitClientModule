@@ -42,8 +42,12 @@ class Ongoing extends React.Component {
           <ExpansionPanel key={`clone-${i}`} expanded={expanded === i} onChange={this.handleExpand(i)}>
             <ExpansionPanelSummary expandIcon={<ExpandMore />}>
               <Typography className={classes.heading}>{ `${clone.teamName} - ${clone.botName}` }</Typography>
-              <Typography className={classes.secondaryHeading}> { ` / ${clone.processName} - ${clone.id}` }
-              </Typography>
+              <Typography className={classes.secondaryHeading}>{ ` / ${clone.processName} - ${clone.id}` }</Typography>
+              { clone.signaledSignals.length !== 0
+                && <Typography className={classes.actionNeeded}>
+                  {`${clone.signaledSignals.length} action${clone.signaledSignals.length !== 1 ? 's' : ''} needed`}
+                </Typography>
+              }
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Grid container>
