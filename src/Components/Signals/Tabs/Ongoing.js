@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Typography, ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Grid, Paper,
+  Typography, ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Grid,
 } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 
@@ -42,17 +42,19 @@ class Ongoing extends React.Component {
           <ExpansionPanel key={`clone-${i}`} expanded={expanded === i} onChange={this.handleExpand(i)}>
             <ExpansionPanelSummary expandIcon={<ExpandMore />}>
               <Typography className={classes.heading}>{ `${clone.teamName} - ${clone.botName}` }</Typography>
-              <Typography className={classes.secondaryHeading}> { ` / ${clone.processName} - ${clone.id}` }
-              </Typography>
+              <Typography className={classes.secondaryHeading}>{ ` / ${clone.processName} - ${clone.id}` }</Typography>
+              { clone.signaledSignals.length !== 0
+                && <Typography className={classes.actionNeeded}>
+                  {`${clone.signaledSignals.length} action${clone.signaledSignals.length !== 1 ? 's' : ''} needed`}
+                </Typography>
+              }
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Grid container>
                 <Grid item xs={12}>
-                  <Paper>
-                    { clone.signaledSignals.map((signal, j) => (
-                      <Answer key={`signal-${j}`} signal={signal} />
-                    ))}
-                  </Paper>
+                  { clone.signaledSignals.map((signal, j) => (
+                    <Answer key={`signal-${j}`} signal={signal} />
+                  ))}
                 </Grid>
               </Grid>
             </ExpansionPanelDetails>

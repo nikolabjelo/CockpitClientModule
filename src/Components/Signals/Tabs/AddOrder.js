@@ -1,11 +1,10 @@
 import React from 'react';
 import {
-  Typography, ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Grid, Paper,
+  Typography, ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Grid,
 } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 
 import { withStyles } from '@material-ui/core/styles';
-import Order from '../Signal/Order';
 import styles from '../styles';
 
 class Archived extends React.Component {
@@ -47,11 +46,7 @@ class Archived extends React.Component {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Grid container>
-                <Grid item xs={12}>
-                  <Paper>
-                    <Order clone={clone} />
-                  </Paper>
-                </Grid>
+                Comming soon : you will be able to place a non suggested order from here directly.
               </Grid>
             </ExpansionPanelDetails>
           </ExpansionPanel>
