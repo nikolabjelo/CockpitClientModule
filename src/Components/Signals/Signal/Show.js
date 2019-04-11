@@ -4,7 +4,7 @@ import {
   Grid, Table, TableBody, TableCell, TableRow, Paper,
 } from '@material-ui/core';
 import { toLocalTime } from '../../../utils';
-import { typeFullName } from './functions';
+import { typeFullName, statusFullName } from './functions';
 import styles from '../styles';
 
 class AnswerToSignal extends React.Component {
@@ -41,6 +41,10 @@ class AnswerToSignal extends React.Component {
               <TableRow>
                 <TableCell>{signal.orderData.marginEnabled === 1 ? 'Margin trading' : '' }</TableCell>
                 <TableCell>Size: {signal.orderData.size === -1 ? 'Full account' : signal.orderData.size }</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell />
+                <TableCell>Status: {statusFullName(signal.orderData.status)}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
