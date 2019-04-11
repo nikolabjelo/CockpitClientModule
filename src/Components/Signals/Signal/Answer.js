@@ -1,8 +1,10 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
-import Show from './Show';
-import Order from './Order';
+import {
+  Grid, Table, TableBody, TableCell, TableHead, TableRow, Paper,
+} from '@material-ui/core';
+import { toLocalTime } from '../../../utils';
+import { typeFullName } from './functions';
 import styles from '../styles';
 
 class AnswerToSignal extends React.Component {
@@ -16,14 +18,43 @@ class AnswerToSignal extends React.Component {
   render() {
     const { signal } = this.props;
     return (
-      <Grid container>
-        <Grid item md={6} xs={12} >
-          <Order signal={signal} />
+      <Paper style={{ marginBottom: 20 }}>
+        <Grid container>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Context</TableCell>
+                <TableCell />
+                <TableCell>Action</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>{toLocalTime(signal.orderData.dateTime / 1000)}</TableCell>
+                <TableCell>Rate: {signal.orderData.rate}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>{signal.orderData.exchange}</TableCell>
+                <TableCell>Direction: {signal.orderData.direction}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>{signal.orderData.market}</TableCell>
+                <TableCell>Take profit: {signal.orderData.takeProfit}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Type: {typeFullName(signal.orderData.type)}</TableCell>
+                <TableCell>Stop: {signal.orderData.stop}</TableCell>
+                <TableCell>BUTTON</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>{signal.orderData.marginEnabled === 1 ? 'Margin trading' : '' }</TableCell>
+                <TableCell>Size: {signal.orderData.size === -1 ? 'Full account' : signal.orderData.size }</TableCell>
+                <TableCell>BUTTON</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         </Grid>
-        <Grid item md={6} xs={12} >
-          <Show signal={signal} />
-        </Grid>
-      </Grid>
+      </Paper>
     );
   }
 }

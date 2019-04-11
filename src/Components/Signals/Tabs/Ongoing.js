@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Typography, ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Grid, Paper,
+  Typography, ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Grid,
 } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 
@@ -52,11 +52,9 @@ class Ongoing extends React.Component {
             <ExpansionPanelDetails>
               <Grid container>
                 <Grid item xs={12}>
-                  <Paper>
-                    { clone.signaledSignals.map((signal, j) => (
-                      <Answer key={`signal-${j}`} signal={signal} />
-                    ))}
-                  </Paper>
+                  { clone.signaledSignals.map((signal, j) => (
+                    <Answer key={`signal-${j}`} signal={signal} />
+                  ))}
                 </Grid>
               </Grid>
             </ExpansionPanelDetails>

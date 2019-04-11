@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Typography, ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Grid, Paper,
+  Typography, ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Grid,
 } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 
@@ -48,11 +48,9 @@ class Archived extends React.Component {
             <ExpansionPanelDetails>
               <Grid container>
                 <Grid item xs={12}>
-                  <Paper>
-                    { clone.signals.map((signal, j) => (
-                      <Show key={`signal-${j}`} signal={signal} />
-                    ))}
-                  </Paper>
+                  { clone.signals.map((signal, j) => (
+                    <Show key={`signal-${j}`} signal={signal} />
+                  ))}
                 </Grid>
               </Grid>
             </ExpansionPanelDetails>
